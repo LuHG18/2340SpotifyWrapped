@@ -27,3 +27,13 @@ jobs:
 
       - name: Run unit tests
         run: ./gradlew test
+
+      - name: Install ktlint
+        run: |
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.42.1/ktlint
+          chmod +x ktlint
+          sudo mv ktlint /usr/local/bin/
+
+      - name: Check code formatting
+        run: |
+          git diff --name-only ${{ github.base_ref }} | grep '\.kt$' | xargs ktlint --relative .
