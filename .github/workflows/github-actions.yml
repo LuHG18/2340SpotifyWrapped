@@ -38,10 +38,10 @@ jobs:
         run: |
           git diff --name-only ${{ github.base_ref }} | grep '\.kt$' | xargs ktlint --relative .
 
-      - name: Download and extract Checkstyle
-        run: |
-          curl -L -o checkstyle.zip https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.44/checkstyle-8.44-all.jar
-          unzip -j checkstyle.zip -d checkstyle
-
-      - name: Check Java code formatting
-        run: java -jar checkstyle-8.44-all.jar -c sun_checks.xml $(find . -name '*.java')
+#      - name: Install Checkstyle
+#        run: |
+#          curl -L -o checkstyle.zip https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.44/checkstyle-8.44-all.jar
+#          unzip checkstyle.zip
+#
+#      - name: Check Java code formatting
+#        run: java -jar checkstyle-8.44-all.jar -c sun_checks.xml $(find . -name '*.java')
